@@ -30,7 +30,7 @@
   },
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "test": "jest run",
+    "test": "jest",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
