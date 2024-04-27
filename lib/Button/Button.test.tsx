@@ -1,24 +1,32 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { expect, it, vi } from 'vitest';
+import '@testing-library/jest-dom';
+import { render, fireEvent } from '@testing-library/react';
 import { Button } from './Button';
 
-it('should render a button', () => {
-  // arrange
-  render(<Button>Click Me!</Button>);
+describe('Button', () => {
+  it('should render the button without crashing', () => {
+    const { getByRole } = render(
+      <Button
+        onClick={() => null}
+        text="test"
+        type="button"
+      />
+    );
+    expect(getByRole('button')).toBeInTheDocument();
+  });
 
-  // assert
-  expect(screen.getByRole('button', { name: 'Click Me!' })).toBeInTheDocument();
-});
+  it('should call the onClick method when a user clicks on the button', () => {
+    const mockClick = jest.fn();
+    const { getByRole } = render(
+      <Button
+        onClick={mockClick}
+        text="test"
+        type="button"
+      />
+    );
+    const buttonElement = getByRole('button');
 
-it('should call onClick when clicked', async () => {
-  // arrange
-  const onClick = vi.fn();
-  render(<Button onClick={onClick}>Click Me!</Button>);
+    fireEvent.click(buttonElement);
 
-  // action
-  await userEvent.click(screen.getByRole('button', { name: 'Click Me!' }));
-
-  // assert
-  expect(onClick).toHaveBeenCalled();
+    expect(mockClick).toHaveBeenCalledTimes(1);
+  });
 });

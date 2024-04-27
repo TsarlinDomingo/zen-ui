@@ -26,7 +26,7 @@ export default defineConfig({
   },
   test: {
     environment: 'jsdom',
-    setupFiles: './lib/test/setup.ts',
+    setupFiles: './jest-setup.ts',
     coverage: {
       all: false,
       enabled: true,

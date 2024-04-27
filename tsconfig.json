@@ -9,9 +9,10 @@
 
     // Specify the module system for the output files. It's not required for Vite but good to have.
     "module": "ESNext",
+    // "module": "CommonJS",
 
     // The types defined in "vite/client" are included in global scope.
-    "types": ["vite/client"],
+    "types": ["vite/client", "jest"],
 
     // Do not emit compiled output files, vite will take care of the that.
     "noEmit": true,
@@ -26,7 +27,7 @@
     "skipLibCheck": true,
 
     // Allow importing modules with ".json" extension.
-    "resolveJsonModule": true,
+    // "resolveJsonModule": true,
 
     // "declarationMap" need to be enabled to let Vite generates source map files.
     "declaration": true,
@@ -51,7 +52,7 @@
     "allowImportingTsExtensions": true,
 
     // Enfore "type" modifier for type imports.
-    "verbatimModuleSyntax": true,
+    // "verbatimModuleSyntax": true,
 
     // Ensure the public class field initialization is transpiled correctly to match the future JS standard.
     "useDefineForClassFields": true,
@@ -67,6 +68,6 @@
     "noUnusedLocals": false,
     "noUnusedParameters": true
   },
-  "include": ["./lib/**/*.ts", "./lib/**/*.tsx"],
+  "include": ["./lib/**/*.ts", "./lib/**/*.tsx", "jest-setup.ts"],
   "exclude": ["./lib/**/*.stories.*"]
 }
