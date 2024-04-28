@@ -25,8 +25,8 @@ jobs:
         uses: actions/checkout@v3
         if: ${{ steps.release.outputs.releases_created }}
 
-      - name: Install yarn
-        uses: yarn/action-setup@v2
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
         if: ${{ steps.release.outputs.releases_created }}
         with:
           version: 8
@@ -37,19 +37,19 @@ jobs:
         with:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
-          cache: 'yarn'
+          cache: 'pnpm'
         if: ${{ steps.release.outputs.releases_created }}
 
       - name: CI
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
         if: ${{ steps.release.outputs.releases_created }}
 
       - name: Build
-        run: yarn build:lib
+        run: pnpm build:lib
         if: ${{ steps.release.outputs.releases_created }}
 
       - name: Publish
-        run: yarn publish
+        run: pnpm publish
         if: ${{ steps.release.outputs.releases_created }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
