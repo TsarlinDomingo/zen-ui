@@ -1,37 +1,46 @@
-# Vite React Component Library Starter
-
-This is a starter template for creating React component libraries using Vite. It includes a robust set of features to help you develop, test, and build your library efficiently.
+# ⚛️⚡ Vite + React + Typescript Component Library Template
 
 ## Features
 
-- React: A JavaScript library for web and native user interfaces.
-- TypeScript: A strongly typed superset of JavaScript.
-- Tailwind: A utility-first CSS framework.
-- Storybook: A frontend workshop for building UI components and pages in isolation.
-- Vite: A next generation frontend tooling that runs and builds your library incredibly fast.
-- Vitest: A next generation testing framework.
-- ESLint: A tool that finds and fixes problems in your code.
-- Prettier: A code formatter.
-- Husky: A pre-commit hook.
-- Github Action: A tool that deploys your Storybook to GitHub page automatically.
+- ⚛️ [React 18](https://reactjs.org/)
+- 📚 [Storybook 7](https://storybook.js.org/) - Components preview
+- 🖌️ [Tailwind CSS 3](https://tailwindcss.com/)
+- ⏩ [Vite](https://vitejs.dev/) - Run and build the project blazingly fast!
+- ⚡ [Vitest](https://vitest.dev/) - Components Unit Testing
+- 📐 [ESLint](https://eslint.org/) & [Prettier](https://prettier.io/) - Formatting and Linting
+- 🌟 [Typescript](https://www.typescriptlang.org/)
+- 🐶 [Husky](https://typicode.github.io/husky) & [Lint Staged](https://www.npmjs.com/package/lint-staged) - Pre-commit Hooks
+- ⏰ [Release Please](https://github.com/googleapis/release-please) — Generate the changelog with the release-please workflow
+- 👷 [Github Actions](https://github.com/features/actions) — Releasing versions to NPM
+- Initial components setup using [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/)
 
-## Get Started
+## Getting Started
 
-1. Clone this repository
-2. Install dependencies using `npm i` (or `pnpm i` if you like)
+1. Create a new repository using this one as template
+2. Clone your repo
+3. Install dependencies with `pnpm i` (first run `corepack enable` to enable pnpm)
+4. Run `pnpm prepare` command to setup [Husky](https://typicode.github.io/husky) pre-commit hooks.
 
-## Scripts
+## Main Scripts
 
-- `dev`: Starts the local Storybook server, use this to develop and preview your components.
-- `test`: Runs all your tests with vitest.
-- `test:watch`: Runs tests in watch mode.
-- `test:ui`: Runs tests with a UI.
-- `test:coverage`: Runs tests and generates a coverage report.
-- `build`: Builds your Storybook as a static web application.
-- `build:lib`: Builds your component library with Vite.
-- `lint`: Runs ESLint.
-- `format`: Formats your code with Prettier.
+Always prepending pnpm:
+
+- `dev`: Bootstrap the Storybook preview with Hot Reload.
+- `build`: Builds the static storybook project.
+- `build:lib`: Builds the component library into the **dist** folder.
+- `lint:fix`: Applies linting based on the rules defined in **.eslintrc.js**.
+- `format:prettier`: Formats files using the prettier rules defined in **.prettierrc**.
+- `test`: Runs testing using watch mode.
+- `test:cov`: Runs testing displaying a coverage report.
+
+## Blog Post
+
+I created a post explaning how to set up this library and publish it to a package registry! You can read it [here](https://igna.hashnode.dev/vite-react-typescript-component-library-template-setup-explanation).
+
+## Author
+
+[Ignacio Miranda Figueroa](https://www.linkedin.com/in/ignacio-miranda-figueroa/)
 
 ## License
 
-MIT
+[MIT](LICENSE)

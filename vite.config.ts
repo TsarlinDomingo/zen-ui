@@ -1,35 +1,42 @@
-/// <reference types="vitest" />
-import { join, resolve } from 'node:path';
-import react from '@vitejs/plugin-react-swc';
-import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
-
-import { peerDependencies } from './package.json';
+import react from '@vitejs/plugin-react'
+import path from 'node:path'
+import dts from 'vite-plugin-dts'
+import tailwindcss from 'tailwindcss'
+import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   plugins: [
     react(),
-    dts({ rollupTypes: true }), // Output .d.ts files
+    dts({
+      insertTypesEntry: true,
+    }),
   ],
+  css: {
+    postcss: {
+      plugins: [tailwindcss],
+    },
+  },
   build: {
-    target: 'esnext',
-    minify: false,
     lib: {
-      entry: resolve(__dirname, join('lib', 'index.ts')),
-      fileName: 'index',
-      formats: ['es', 'cjs'],
+      entry: path.resolve(__dirname, 'src/lib/index.ts'),
+      name: 'zen-ui',
+      formats: ['es', 'umd'],
+      fileName: (format) => `zen-ui.${format}.js`,
     },
     rollupOptions: {
-      // Exclude peer dependencies from the bundle to reduce bundle size
-      external: ['react/jsx-runtime', ...Object.keys(peerDependencies)],
+      external: ['react', 'react/jsx-runtime', 'react-dom', 'tailwindcss'],
+      output: {
+        globals: {
+          react: 'React',
+          'react/jsx-runtime': 'react/jsx-runtime',
+          'react-dom': 'ReactDOM',
+          tailwindcss: 'tailwindcss',
+        },
+      },
     },
   },
   test: {
+    globals: true,
     environment: 'jsdom',
-    setupFiles: './jest-setup.ts',
-    coverage: {
-      all: false,
-      enabled: true,
-    },
   },
-});
+})

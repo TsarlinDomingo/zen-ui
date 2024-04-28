@@ -1,19 +1,25 @@
-import type { StorybookConfig } from '@storybook/react-vite';
-import { withoutVitePlugins } from '@storybook/builder-vite';
-
+import type { StorybookConfig } from '@storybook/react-vite'
 const config: StorybookConfig = {
-  stories: ['../lib/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  addons: ['@storybook/addon-essentials', '@storybook/addon-actions'],
+  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
+    '@storybook/addon-styling',
+  ],
   framework: {
     name: '@storybook/react-vite',
-    options: {},
+    options: {
+      builder: {
+        viteConfigPath: '.storybook/vite.config.ts',
+      },
+    },
+  },
+  typescript: {
+    check: true,
   },
   docs: {
-    autodocs: 'tag',
+    autodocs: true,
   },
-  viteFinal: async (config) => ({
-    ...config,
-    plugins: await withoutVitePlugins(config.plugins, ['vite:dts']), // skip dts plugin
-  }),
-};
-export default config;
+}
+export default config
